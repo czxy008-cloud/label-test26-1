@@ -1,0 +1,69 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.whl
+.venv/
+venv/
+env/
+ENV/
+
+# ===== Flask / Instance =====
+backend/instance/*.db
+backend/instance/uploads/*
+!backend/instance/uploads/.gitkeep
+.flaskenv
+
+# ===== Environment =====
+.env
+.env.local
+.env.*.local
+
+# ===== Node / Frontend =====
+node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/dist-ssr/
+*.local
+
+# ===== Logs =====
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== IDE / Editor =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ===== Testing / Coverage =====
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+
+# ===== Misc =====
+*.bak
+*.tmp
+*.pid
+.cache/
