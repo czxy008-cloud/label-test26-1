@@ -22,15 +22,18 @@ request.interceptors.response.use(
   (error) => {
     if (error.response) {
       if (error.response.status === 401) {
-        localStorage.removeItem('swap_user')
-        window.location.href = '/login'
+        const path = window.location.pathname
+        if (path !== '/login' && path !== '/register') {
+          localStorage.removeItem('swap_user')
+          window.location.href = '/login'
+        }
       } else {
         ElMessage.error(error.response.data?.msg || '网络错误')
       }
     } else {
       ElMessage.error('网络连接异常')
     }
-    return Promise.reject(error)
+    return Promise.reject(error.response?.data || error)
   }
 )
 

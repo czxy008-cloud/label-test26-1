@@ -61,6 +61,9 @@ export const useUserStore = defineStore('user', {
     addUnread() {
       this.unreadCount++
     },
+    setUnreadCount(count) {
+      this.unreadCount = count
+    },
     resetUnread() {
       this.unreadCount = 0
     }

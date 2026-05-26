@@ -92,6 +92,8 @@ async function loadConversations() {
   try {
     const res = await request.get('/messages/conversations')
     conversations.value = res.data || []
+    const total = conversations.value.reduce((sum, c) => sum + (c.unread_count || 0), 0)
+    userStore.setUnreadCount(total)
   } catch (_) {}
 }
 
@@ -104,6 +106,7 @@ async function loadMessages(uid) {
     activeUser.value = found?.other || { id: uid, nickname: '', username: '用户' }
     await nextTick()
     scrollBottom()
+    loadConversations()
   } catch (_) {}
 }
 

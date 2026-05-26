@@ -43,6 +43,8 @@ async function onSubmit() {
     ElMessage.success('登录成功')
     const redirect = route.query.redirect || '/'
     router.push(redirect)
+  } catch (err) {
+    ElMessage.error(err?.msg || '登录失败，请检查用户名和密码')
   } finally {
     loading.value = false
   }

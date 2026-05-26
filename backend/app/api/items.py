@@ -140,7 +140,13 @@ def update(item_id):
     if "expected_tags" in data:
         item.expected_tags = ",".join(data["expected_tags"]) if data["expected_tags"] else None
     if "status" in data:
-        item.status = int(data["status"])
+        try:
+            status_val = int(data["status"])
+        except (TypeError, ValueError):
+            return jsonify({"code": 400, "msg": "状态值无效"}), 400
+        if status_val not in (Item.STATUS_AVAILABLE, Item.STATUS_TRADING, Item.STATUS_DONE, Item.STATUS_OFFLINE):
+            return jsonify({"code": 400, "msg": "状态值无效"}), 400
+        item.status = status_val
 
     db.session.commit()
     return jsonify({"code": 0, "msg": "更新成功", "data": item.to_dict()})
